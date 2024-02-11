@@ -1,0 +1,35 @@
+@import "../../../variables";
+
+.trashElement{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+
+    p {
+        color: $primary-color-20;
+        text-align: center;
+    }
+
+    &__mainText{
+        font-size: 1.6rem;
+    }
+
+    &__subText{
+        font-size: 1.3rem;
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+        width: 100%;
+
+       .btn-default, .btn-danger{
+        flex: 1;
+       }
+    }
+}

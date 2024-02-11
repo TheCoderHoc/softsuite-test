@@ -12,15 +12,19 @@ import {
     allElementsPageStepItems,
 } from "../../constants/allElementPage";
 import EmptyData from "../../components/shared/EmptyData";
-import { fetchElements } from "../../redux/elements.slice";
+import { fetchElements, trashElement } from "../../redux/elements.slice";
 import Message from "../../components/shared/Message";
 import { InitialElementFieldsType } from "../../components/elements/InitialElementDetails";
+import TrashElement from "../../components/elements/TrashElement";
 
 export default function AllElements() {
     const [createElementModal, setCreateElementModal] = useState(false);
+    const [trashElementModal, setTrashElementModal] = useState(false);
     const [currentStep, setCurrentStep] = useState(0);
     const [initialFields, setInitialFields] =
         useState<InitialElementFieldsType>();
+
+    const [elementToTrashId, setElementToTrashId] = useState("");
 
     const element = useAppSelector((state) => state.element);
 
@@ -47,6 +51,18 @@ export default function AllElements() {
         setInitialFields(data);
     };
 
+    const handleTrashElement = async (elementId: string) => {
+        try {
+            await dispatch(trashElement(elementId));
+
+            handleCancelTrashElementModal();
+
+            dispatch(fetchElements());
+        } catch (error: any) {
+            console.log(error);
+        }
+    };
+
     // MODAL FUNCTIONS
     const handleOpenCreateElementModal = () => {
         setCreateElementModal(true);
@@ -56,6 +72,18 @@ export default function AllElements() {
         setCreateElementModal(false);
 
         setCurrentStep(0);
+    };
+
+    // SHOW TRASH ELEMENT MODAL
+    const handleOpenTrashElementModal = (elementId: string) => {
+        setTrashElementModal(true);
+
+        setElementToTrashId(elementId);
+    };
+
+    // HIDE TRASH ELEMENT MODAL
+    const handleCancelTrashElementModal = () => {
+        setTrashElementModal(false);
     };
 
     const next = () => {
@@ -81,7 +109,9 @@ export default function AllElements() {
                 <div className="elements__table">
                     {element.elements && element.elements.length > 0 ? (
                         <Table
-                            columns={allElementsTableColumns()}
+                            columns={allElementsTableColumns(
+                                handleOpenTrashElementModal
+                            )}
                             dataSource={dataSource}
                             pagination={{ pageSize: 10 }}
                             loading={element.fetching}
@@ -133,6 +163,18 @@ export default function AllElements() {
                         Element has been <br /> created successfully.
                     </Message>
                 )}
+            </Modal>
+
+            <Modal
+                open={trashElementModal}
+                onCancel={handleCancelTrashElementModal}
+                footer={false}
+                width={400}
+            >
+                <TrashElement
+                    onTrashElement={handleTrashElement}
+                    elementToTrashId={elementToTrashId}
+                />
             </Modal>
         </AppLayout>
     );

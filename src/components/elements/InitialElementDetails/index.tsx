@@ -43,10 +43,15 @@ export default function InitialElementDetails({
     const [selectOptions, setSelectOptions] = useState<SelectOption[][]>();
 
     //
-    const [classificationOption, setClassificationOption] =
-        useState<SelectOption>();
-    const [categoryOption, setCategoryOption] = useState<SelectOption>();
-    const [payrunOption, setPayrunOption] = useState<SelectOption>();
+    const [classificationOption, setClassificationOption] = useState<
+        SelectOption | SelectOption[]
+    >();
+    const [categoryOption, setCategoryOption] = useState<
+        SelectOption | SelectOption[]
+    >();
+    const [payrunOption, setPayrunOption] = useState<
+        SelectOption | SelectOption[]
+    >();
 
     const {
         handleSubmit,
@@ -210,6 +215,7 @@ export default function InitialElementDetails({
             payrun: payrunOption,
         };
 
+        // @ts-ignore
         onUpdateFields(initialFields);
 
         onNext();

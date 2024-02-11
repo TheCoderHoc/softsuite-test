@@ -53,18 +53,18 @@ const elementSlice = createSlice({
             state.error = action.error.message;
         })
 
-        // DELETE ELEMENT PENDING
-        builder.addCase(deleteElement.pending, (state) => {
+        // TRASH ELEMENT PENDING
+        builder.addCase(trashElement.pending, (state) => {
             state.fetching = true;
         })
 
-        // DELETE ELEMENT FULFILLED
-        builder.addCase(deleteElement.fulfilled, (state) => {
+        // TRASH ELEMENT FULFILLED
+        builder.addCase(trashElement.fulfilled, (state) => {
             state.fetching = false;
         })
 
-        // DELETE ELEMENT FAILED
-        builder.addCase(deleteElement.rejected, (state, action) => {
+        // TRASH ELEMENT FAILED
+        builder.addCase(trashElement.rejected, (state, action) => {
             state.fetching = false;
             state.error = action.error.message;
         })
@@ -90,7 +90,7 @@ export const addElement = createAsyncThunk("elements/addElement", async(payload:
     return response.data
 })
 
-export const deleteElement = createAsyncThunk("elements/deleteElement", async(elementId: string) => {
+export const trashElement = createAsyncThunk("elements/trashElement", async(elementId: string) => {
     
     const response = await axiosInstance({
         method: "DELETE",

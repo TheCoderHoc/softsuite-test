@@ -22,7 +22,8 @@ export interface AllElementsTableColumnType {
 }
 
 const dropdownMenuItems = (
-    record: AllElementsTableColumnType
+    record: AllElementsTableColumnType,
+    handleOpenTrashElementModal: (id: string) => void
 ): MenuProps["items"] => {
     return [
         {
@@ -53,7 +54,9 @@ const dropdownMenuItems = (
                 <span
                     className="elements__table__dropdown__item"
                     style={{ color: "red" }}
-                    onClick={() => {}}
+                    onClick={() => {
+                        handleOpenTrashElementModal(record.id);
+                    }}
                 >
                     <CiTrash size={18} />
                     <span>Delete Element</span>
@@ -63,86 +66,87 @@ const dropdownMenuItems = (
     ];
 };
 
-export const allElementsTableColumns =
-    (): TableProps<AllElementsTableColumnType>["columns"] => {
-        return [
-            {
-                title: "Name",
-                dataIndex: "name",
-                key: "name",
-            },
+export const allElementsTableColumns = (
+    handleOpenTrashElementModal: (id: string) => void
+): TableProps<AllElementsTableColumnType>["columns"] => {
+    return [
+        {
+            title: "Name",
+            dataIndex: "name",
+            key: "name",
+        },
 
-            {
-                title: "Element Category",
-                dataIndex: "category",
-                key: "category",
-            },
+        {
+            title: "Element Category",
+            dataIndex: "category",
+            key: "category",
+        },
 
-            {
-                title: "Element Classification",
-                dataIndex: "classification",
-                key: "classification",
-            },
+        {
+            title: "Element Classification",
+            dataIndex: "classification",
+            key: "classification",
+        },
 
-            {
-                title: "Status",
-                dataIndex: "status",
-                key: "status",
-                render(_, { status }) {
-                    return (
-                        <Tag
-                            color={
-                                status === "Active" ? "#F4FAF7" : "#E054530D"
-                            }
-                            style={{
-                                color:
-                                    status === "Active" ? "#4BAA79" : "#E05453",
-                                textTransform: "capitalize",
-                            }}
-                        >
-                            {status}
-                        </Tag>
-                    );
-                },
+        {
+            title: "Status",
+            dataIndex: "status",
+            key: "status",
+            render(_, { status }) {
+                return (
+                    <Tag
+                        color={status === "Active" ? "#F4FAF7" : "#E054530D"}
+                        style={{
+                            color: status === "Active" ? "#4BAA79" : "#E05453",
+                            textTransform: "capitalize",
+                        }}
+                    >
+                        {status}
+                    </Tag>
+                );
             },
+        },
 
-            {
-                title: "Date & Time Modified",
-                dataIndex: "dateTimeModified",
-                key: "dateTimeModified",
-                render(_, { dateTimeModified }) {
-                    return formatDate(
-                        new Date(dateTimeModified),
-                        "dd-MM-yyyy || hh:mm a"
-                    );
-                },
+        {
+            title: "Date & Time Modified",
+            dataIndex: "dateTimeModified",
+            key: "dateTimeModified",
+            render(_, { dateTimeModified }) {
+                return formatDate(
+                    new Date(dateTimeModified),
+                    "dd-MM-yyyy || hh:mm a"
+                );
             },
+        },
 
-            {
-                title: "Modified By",
-                dataIndex: "modifiedBy",
-                key: "modifiedBy",
-            },
+        {
+            title: "Modified By",
+            dataIndex: "modifiedBy",
+            key: "modifiedBy",
+        },
 
-            {
-                title: "Action",
-                dataIndex: "action",
-                key: "action",
-                render(_, record) {
-                    return (
-                        <Dropdown
-                            menu={{
-                                items: dropdownMenuItems(record),
-                            }}
-                            trigger={["click"]}
-                        >
-                            <img src={dots} width={12} height={12} />
-                        </Dropdown>
-                    );
-                },
+        {
+            title: "Action",
+            dataIndex: "action",
+            key: "action",
+            render(_, record) {
+                return (
+                    <Dropdown
+                        menu={{
+                            items: dropdownMenuItems(
+                                record,
+                                handleOpenTrashElementModal
+                            ),
+                        }}
+                        trigger={["click"]}
+                    >
+                        <img src={dots} width={12} height={12} />
+                    </Dropdown>
+                );
             },
-        ];
-    };
+        },
+    ];
+};
 
 export const allElementsPageStepItems = (
     prev: () => void,

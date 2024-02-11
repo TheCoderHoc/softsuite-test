@@ -1,0 +1,27 @@
+@import "../../variables";
+
+.elements {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    padding: 2rem;
+
+    &__title {
+        font-size: 1.9rem;
+        margin-bottom: 3rem;
+    }
+
+    &__title-alt {
+        color: $primary-color;
+        font-size: 2.4rem;
+        margin-bottom: 3rem;
+    }
+
+    &__table__dropdown__item{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: $primary-color;
+    }
+    
+}

@@ -3,16 +3,25 @@ import AppLayout from "../../layouts/AppLayout";
 import "./styles.scss";
 // import { allElementsPageBreadCrumbs } from "../../constants/breadcrumbs";
 import CreateAndSearch from "../../components/shared/CreateAndSearch";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { Table } from "antd";
-import allElementsTableColumns, {
+import { Modal, Steps, Table } from "antd";
+import {
+    allElementsTableColumns,
     AllElementsTableColumnType,
-} from "../../constants/elementTableColumn";
+    allElementsPageStepItems,
+} from "../../constants/allElementPage";
 import EmptyData from "../../components/shared/EmptyData";
 import { fetchElements } from "../../redux/elements.slice";
+import Message from "../../components/shared/Message";
+import { InitialElementFieldsType } from "../../components/elements/InitialElementDetails";
 
 export default function AllElements() {
+    const [createElementModal, setCreateElementModal] = useState(false);
+    const [currentStep, setCurrentStep] = useState(0);
+    const [initialFields, setInitialFields] =
+        useState<InitialElementFieldsType>();
+
     const element = useAppSelector((state) => state.element);
 
     const dataSource: AllElementsTableColumnType[] = element.elements
@@ -34,6 +43,29 @@ export default function AllElements() {
         dispatch(fetchElements());
     }, []);
 
+    const handleUpdateInitialFields = (data: InitialElementFieldsType) => {
+        setInitialFields(data);
+    };
+
+    // MODAL FUNCTIONS
+    const handleOpenCreateElementModal = () => {
+        setCreateElementModal(true);
+    };
+
+    const handleCancelCreateElement = () => {
+        setCreateElementModal(false);
+
+        setCurrentStep(0);
+    };
+
+    const next = () => {
+        setCurrentStep(currentStep + 1);
+    };
+
+    const prev = () => {
+        setCurrentStep(currentStep - 1);
+    };
+
     return (
         <AppLayout>
             {/* <Breadcrumbs items={allElementsPageBreadCrumbs} /> */}
@@ -42,7 +74,7 @@ export default function AllElements() {
                 <h2 className="elements__title">Elements</h2>
 
                 <CreateAndSearch
-                    onButtonClick={() => {}}
+                    onButtonClick={handleOpenCreateElementModal}
                     buttonTitle="Create Element"
                 />
 
@@ -59,6 +91,49 @@ export default function AllElements() {
                     )}
                 </div>
             </div>
+
+            <Modal
+                open={createElementModal}
+                footer={false}
+                onCancel={handleCancelCreateElement}
+                destroyOnClose={true}
+                width={700}
+            >
+                {currentStep <= 1 ? (
+                    <div>
+                        <h2 className="elements__title-alt">Create Element</h2>
+
+                        <Steps
+                            current={currentStep}
+                            items={allElementsPageStepItems(
+                                prev,
+                                next,
+                                handleCancelCreateElement,
+                                handleUpdateInitialFields,
+                                initialFields
+                            )}
+                            size="small"
+                            style={{ marginBottom: "3rem" }}
+                        />
+
+                        <div>
+                            {
+                                allElementsPageStepItems(
+                                    prev,
+                                    next,
+                                    handleCancelCreateElement,
+                                    handleUpdateInitialFields,
+                                    initialFields
+                                )[currentStep].content
+                            }
+                        </div>
+                    </div>
+                ) : (
+                    <Message onButtonClick={handleCancelCreateElement}>
+                        Element has been <br /> created successfully.
+                    </Message>
+                )}
+            </Modal>
         </AppLayout>
     );
 }

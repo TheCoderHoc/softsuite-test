@@ -1,0 +1,14 @@
+@import "../../../variables";
+
+.additionalElementDetails {
+    &__buttons-wrapper{
+        display: flex;
+        align-items: center;
+        column-gap: 2rem;
+        margin-top: 2rem;
+
+        .ant-btn {
+            flex: 1;
+        }
+    }
+}

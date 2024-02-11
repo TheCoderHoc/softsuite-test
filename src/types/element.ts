@@ -20,3 +20,13 @@ export default interface ElementType {
     selectedMonths: string[],
     status: string,
 }
+
+export interface LookupType {
+    createdAt: string,
+    description: string,
+    id: string,
+    lookupId: string,
+    lookupName: string,
+    name: string,
+    status: string,
+}

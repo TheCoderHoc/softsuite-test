@@ -5,6 +5,10 @@ import { AiOutlineEye } from "react-icons/ai";
 import { CiEdit, CiTrash } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import dots from "../assets/icons/dots.png";
+import InitialElementDetails, {
+    InitialElementFieldsType,
+} from "../components/elements/InitialElementDetails";
+import AdditionalElementDetails from "../components/elements/AdditionalElementDetails";
 
 export interface AllElementsTableColumnType {
     key: string;
@@ -59,7 +63,7 @@ const dropdownMenuItems = (
     ];
 };
 
-const allElementsTableColumns =
+export const allElementsTableColumns =
     (): TableProps<AllElementsTableColumnType>["columns"] => {
         return [
             {
@@ -140,4 +144,32 @@ const allElementsTableColumns =
         ];
     };
 
-export default allElementsTableColumns;
+export const allElementsPageStepItems = (
+    prev: () => void,
+    next: () => void,
+    handleCancelCreateElement: () => void,
+    handleUpdateInitialFields: (data: InitialElementFieldsType) => void,
+    initialFields: InitialElementFieldsType | undefined
+) => [
+    {
+        title: "Element Details",
+        content: (
+            <InitialElementDetails
+                onPrev={prev}
+                onNext={next}
+                onCancel={handleCancelCreateElement}
+                onUpdateFields={handleUpdateInitialFields}
+            />
+        ),
+    },
+    {
+        title: "Additional Details",
+        content: (
+            <AdditionalElementDetails
+                onPrev={prev}
+                onNext={next}
+                initialFields={initialFields}
+            />
+        ),
+    },
+];

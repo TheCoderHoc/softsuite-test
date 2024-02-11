@@ -1,0 +1,36 @@
+
+@import "../../variables";
+
+.sidebar {
+    min-width: 30rem;
+    width: 30rem;
+    height:100vh;
+    overflow: auto;
+    scrollbar-color: $primary-color-40 #f4f4f4;
+    scrollbar-width: thin;
+    padding: 0 0.5rem;
+
+    &__logo {
+        padding: 0 2rem;
+        margin-top: 1rem;
+
+        img {
+            object-fit: contain;
+            width: 15rem;
+        }
+    }
+
+    &__container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__nav {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        gap: 1rem;
+    }
+}

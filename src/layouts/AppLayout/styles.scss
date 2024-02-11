@@ -1,0 +1,19 @@
+@import "../../variables";
+
+.dashboard__layout {
+    display: flex;
+    column-gap: 2rem;
+    
+    &__main__view{
+        background-color: #F6F7F9;
+        height: 100vh;
+        overflow: auto;
+        scrollbar-color: $primary-color-40 #f4f4f4;
+        scrollbar-width: thin;
+        width: 80%;
+    }
+    
+    &__outlet{
+        padding: 2rem 3rem;
+    }
+}

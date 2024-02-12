@@ -72,9 +72,15 @@ export const singleElementTableColumns = (
             key: "actions",
             render: () => (
                 <div className="single__element__details__actions">
-                    <CiEdit size={18} />
+                    <Button
+                        type="link"
+                        icon={<CiEdit size={18} color="#2D416F" />}
+                    />
 
-                    <CiTrash size={18} />
+                    <Button
+                        type="link"
+                        icon={<CiTrash size={18} color="#E05453" />}
+                    />
                 </div>
             ),
         },

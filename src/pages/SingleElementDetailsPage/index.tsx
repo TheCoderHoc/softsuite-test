@@ -118,7 +118,10 @@ export default function SingleElementDetailsPage() {
 
     return (
         <AppLayout>
-            <Breadcrumb items={singleElementPageBreadcrumbItems} separator={<FiChevronRight />} />
+            <Breadcrumb
+                items={singleElementPageBreadcrumbItems}
+                separator={<FiChevronRight />}
+            />
 
             <div className="single__element__details">
                 <BackButton />
@@ -249,6 +252,7 @@ export default function SingleElementDetailsPage() {
                             )}
                             size="small"
                             style={{ marginBottom: "3rem" }}
+                            labelPlacement="vertical"
                         />
 
                         <div>
@@ -278,6 +282,8 @@ export default function SingleElementDetailsPage() {
             >
                 <ElementLinkDetails elementLink={elementLinkToView} />
             </Drawer>
+
+            
         </AppLayout>
     );
 }

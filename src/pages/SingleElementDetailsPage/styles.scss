@@ -24,14 +24,5 @@
     &__actions {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
-
-        > :first-child{
-            fill: $primary-color;
-        }
-
-        >:nth-child(2){
-            fill: #E05453;
-        }
     }
 }

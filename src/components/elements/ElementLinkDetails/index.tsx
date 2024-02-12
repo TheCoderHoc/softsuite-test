@@ -110,6 +110,11 @@ export default function ElementLinkDetails({
                     <span>Modified By</span>
                     <span>{elementLink?.modifiedBy}</span>
                 </li>
+
+                <li>
+                    <span></span>
+                    <span></span>
+                </li>
             </ul>
         </div>
     );

@@ -11,8 +11,6 @@ export default function SidebarNavLink({
     children,
 }: SidebarNavLinkProps) {
     const something = () => {
-        console.log("Hello");
-
         // disable other collapsed items when opened
         // use the useCallback hook
     };

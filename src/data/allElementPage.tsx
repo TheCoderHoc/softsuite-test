@@ -177,3 +177,15 @@ export const allElementsPageStepItems = (
         ),
     },
 ];
+
+export const allElementsPageBreadcrumbItems = [
+    {
+        title: <Link to="/">Payroll Management</Link>,
+    },
+    {
+        title: <Link to="/">Element Setup</Link>,
+    },
+    {
+        title: "Elements",
+    },
+];

@@ -1,0 +1,37 @@
+@import "../../variables";
+
+.single__element__details{
+    background-color: #fff;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    padding: 2rem;
+
+   &__section {
+    margin-top: 8rem;
+
+        &__title {
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.9rem;
+        }
+    }
+
+    h1 {
+        font-size: 19px;
+        margin-top: 2rem;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        > :first-child{
+            fill: $primary-color;
+        }
+
+        >:nth-child(2){
+            fill: #E05453;
+        }
+    }
+}

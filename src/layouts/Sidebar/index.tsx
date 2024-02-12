@@ -1,7 +1,7 @@
 import "./styles.scss";
 import logo from "../../assets/images/logo.png";
 import { Divider } from "antd";
-import sidebarNavLinks from "../../constants/sidebarNavLinks";
+import sidebarNavLinks from "../../data/sidebarNavLinks";
 import SidebarNavLink from "../../components/shared/SidebarNavLink";
 
 export default function Sidebar() {

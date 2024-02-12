@@ -2,7 +2,7 @@ import "./styles.scss";
 import { Button, Input, Select } from "antd";
 import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { initialElementsLookups } from "../../../constants/initialElementsData";
+import { initialElementsLookups } from "../../../data/initialElementsData";
 import { axiosInstance } from "../../../utils/axios";
 import { LookupType } from "../../../types/element";
 import InputErrorMessage from "../../shared/InputErrorMessage";

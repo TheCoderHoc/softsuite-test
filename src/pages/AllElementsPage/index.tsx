@@ -5,17 +5,19 @@ import "./styles.scss";
 import CreateAndSearch from "../../components/shared/CreateAndSearch";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { Modal, Steps, Table } from "antd";
+import { Breadcrumb, Modal, Steps, Table } from "antd";
 import {
     allElementsTableColumns,
     AllElementsTableColumnType,
     allElementsPageStepItems,
-} from "../../constants/allElementPage";
+    allElementsPageBreadcrumbItems,
+} from "../../data/allElementPage";
 import EmptyData from "../../components/shared/EmptyData";
 import { fetchElements, trashElement } from "../../redux/elements.slice";
 import Message from "../../components/shared/Message";
 import { InitialElementFieldsType } from "../../components/elements/InitialElementDetails";
 import TrashElement from "../../components/elements/TrashElement";
+import { FiChevronRight } from "react-icons/fi";
 
 export default function AllElements() {
     const [createElementModal, setCreateElementModal] = useState(false);
@@ -96,7 +98,10 @@ export default function AllElements() {
 
     return (
         <AppLayout>
-            {/* <Breadcrumbs items={allElementsPageBreadCrumbs} /> */}
+            <Breadcrumb
+                items={allElementsPageBreadcrumbItems}
+                separator={<FiChevronRight />}
+            />
 
             <div className="elements">
                 <h2 className="elements__title">Elements</h2>

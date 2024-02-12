@@ -30,3 +30,33 @@ export interface LookupType {
     name: string,
     status: string,
 }
+
+export interface ElementLinkType {
+    additionalInfo: [];
+    amount: number;
+    amountType: string;
+    automate: string;
+    createdAt: string;
+    departmentId: string;
+    effectiveEndDate: string;
+    effectiveStartDate: string;
+    elementId: string;
+    employeeCategoryId: string;
+    employeeCategoryValueId: string;
+    employeeTypeId: string;
+    employeeTypeValueId: string;
+    grade: string;
+    gradeStep: string;
+    id: string;
+    jobTitleId: string;
+    locationId: string;
+    name: string;
+    rate: number;
+    status: string[] | string;
+    suborganizationId: string;
+    unionId: string;
+    pension: string;
+    housing: string;
+    housingId: string,
+    modifiedBy: string,
+}

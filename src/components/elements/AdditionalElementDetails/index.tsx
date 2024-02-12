@@ -4,7 +4,7 @@ import { Button, Input, Radio, Select, Switch } from "antd";
 import InputErrorMessage from "../../shared/InputErrorMessage";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { addElement, fetchElements } from "../../../redux/elements.slice";
-import { months } from "../../../constants/months";
+import { months } from "../../../data/months";
 import { useState } from "react";
 
 type FormValue = {
